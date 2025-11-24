@@ -1,0 +1,7 @@
+C:\Users\Lenovo\Desktop\GIT\Resume\bin\Release\net9.0\publish\MyPortfolioBlazor.exe
+C:\Users\Lenovo\Desktop\GIT\Resume\bin\Release\net9.0\publish\appsettings.Development.json
+C:\Users\Lenovo\Desktop\GIT\Resume\bin\Release\net9.0\publish\appsettings.json
+C:\Users\Lenovo\Desktop\GIT\Resume\bin\Release\net9.0\publish\MyPortfolioBlazor.dll
+C:\Users\Lenovo\Desktop\GIT\Resume\bin\Release\net9.0\publish\MyPortfolioBlazor.deps.json
+C:\Users\Lenovo\Desktop\GIT\Resume\bin\Release\net9.0\publish\MyPortfolioBlazor.runtimeconfig.json
+C:\Users\Lenovo\Desktop\GIT\Resume\bin\Release\net9.0\publish\MyPortfolioBlazor.pdb

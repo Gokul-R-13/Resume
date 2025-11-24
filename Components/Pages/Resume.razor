@@ -1,0 +1,251 @@
+@page "/"
+
+<!-- Top Navbar -->
+<nav class="navbar">
+    <div class="navbar-left">
+        <h2>@resumeData.Name</h2> <span>@resumeData.Title</span>
+    </div>
+    <div class="navbar-right">
+        <span>📞 @resumeData.Phone</span>
+        <span>✉️ @resumeData.Email</span>
+        <a href="@resumeData.LinkedIn" target="_blank">LinkedIn</a>
+        <a href="@resumeData.GitHub" target="_blank">GitHub</a>
+    </div>
+</nav>
+
+<!-- Resume Content -->
+<div class="resume-content">
+    <section>
+        <h4>Professional Summary</h4>
+        <p>@resumeData.Summary</p>
+    </section>
+
+    <section>
+        <h4>Work Experience</h4>
+        @foreach (var exp in resumeData.Experiences)
+        {
+            <div class="experience-item">
+                <div class="experience-header">
+                    <strong>@exp.Role</strong> — @exp.Company
+                    <span class="muted">(@exp.Duration, @exp.Location)</span>
+                </div>
+                <ul>
+                    @foreach (var detail in exp.Responsibilities)
+                    {
+                        <li>@detail</li>
+                    }
+                </ul>
+            </div>
+        }
+    </section>
+
+
+    <section>
+        <h4>Technical Skills</h4>
+        <ul>
+            @foreach (var skill in resumeData.Skills)
+            {
+                <li><strong>@skill.Category:</strong> @string.Join(", ", skill.Items)</li>
+            }
+        </ul>
+    </section>
+
+    <section>
+        <h4>Projects</h4>
+        @foreach (var proj in resumeData.Projects)
+        {
+            <div class="project-item">
+                <strong>@proj.Title</strong>
+                <em>@proj.Technology</em>
+            </div>
+        }
+    </section>
+
+    <section>
+        <h4>Education</h4>
+        @foreach (var edu in resumeData.Education)
+        {
+            <p>
+                <strong>@edu.Degree</strong> — @edu.Institution
+                <span class="muted">(@edu.Year, @edu.Location)</span>
+            </p>
+        }
+    </section>
+
+    <section>
+        <h4>Certifications</h4>
+        <ul>
+            @foreach (var cert in resumeData.Certifications)
+            {
+                <li>@cert</li>
+            }
+        </ul>
+    </section>
+</div>
+
+<style>
+/* Navbar styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #2c3e50;
+    color: white;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;   /* reduced font size */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.navbar h3 {
+    margin: 0;
+    font-size: 0.9rem;    /* smaller heading */
+}
+.navbar span {
+    margin-left: 0.4rem;
+    font-size: 0.75rem;
+}
+.navbar a {
+    color: #f1c40f;
+    text-decoration: none;
+    margin-left: 0.4rem;
+    font-size: 0.75rem;
+}
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+/* Resume content styling */
+.resume-content {
+    padding: 0.8rem;
+    font-size: 0.75rem;   /* reduced font size */
+    line-height: 1.3;     /* tighter line spacing */
+    max-width: 100%;      /* full width, no side gaps */
+    margin: 0;
+}
+.resume-content section {
+    margin-bottom: 0.8rem;
+}
+.resume-content h4 {
+    margin-bottom: 0.4rem;
+    border-bottom: 1px solid #ccc;
+    font-size: 0.85rem;   /* smaller section headers */
+}
+.resume-content p,
+.resume-content li {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    margin-bottom: 0.25rem;
+    font-size: 0.75rem;   /* reduced text size */
+}
+</style>
+
+
+
+@code {
+    private ResumeModel resumeData = new ResumeModel
+    {
+        Name = "Gokul R",
+        Title = ".NET & Azure Developer",
+        Phone = "(+91) 8807443512",
+        Email = "mrgokul136@gmail.com",
+        LinkedIn = "https://www.linkedin.com/in/gokulramesh136",
+        GitHub = "https://github.com/Gokul-R-13",
+        Summary = ".NET & Azure Developer with 3 years of experience building scalable cloud-native applications, modernizing legacy systems, and automating workflows with Python. Skilled in delivering secure, high-performance solutions on Microsoft Azure, with proven success in enterprise-scale projects.",
+        Experiences = new List<Experience>
+        {
+            new Experience
+            {
+                Role = "Application Development Analyst",
+                Company = "Accenture",
+                Duration = "Oct 2022 – Present",
+                Location = "Chennai",
+                Responsibilities = new List<string>
+                {
+                    "Designing and deploying scalable .NET and Azure-based solutions to streamline operations and enhance system reliability.",
+                    "Collaborating with cross-functional teams to modernize legacy Classic ASP applications into ASP.NET Core, improving maintainability and aligning with architectural best practices.",
+                    "Optimizing performance across 15+ business-critical applications, resulting in a 20% improvement in response times and a 15% reduction in downtime incidents.",
+                    "Integrating RESTful APIs and deploying secure, high-availability web applications using Azure App Services to support seamless cross-system communication.",
+                    "Automating infrastructure tasks with Azure Functions and Python scripts, reducing manual workflows and boosting team productivity by 30%.",
+                    "Implemented and managed SAST, DAST, and SCA scans across multiple applications to proactively identify vulnerabilities, ensure code security, and maintain compliance with industry standards.",
+                    "Authored technical documentation recognized by the Centre of Excellence, aiding onboarding and cross-team knowledge sharing."
+                }
+            }
+        },
+        Projects = new List<Project>
+        {
+            new Project
+            {
+                Title = "Generating a Gait for a Biped robot using Actor-Critic method (Reinforcement Learning)",
+                Technology = "Python 3.8, Google Colab (GCP), PyTorch, Open Gym, TensorFlow"
+            }
+        },
+        Skills = new List<SkillCategory>
+        {
+            new SkillCategory { Category = "Languages", Items = new List<string>{ "Python", "C#" } },
+            new SkillCategory { Category = "Frameworks & Libraries", Items = new List<string>{ ".NET Framework", ".NET Core", "ASP.NET MVC", "Angular", "Django", "Flask" } },
+            new SkillCategory { Category = "Web APIs", Items = new List<string>{ "REST API", "SOAP API" } },
+            new SkillCategory { Category = "Databases", Items = new List<string>{ "SQL Server", "PostgreSQL", "Oracle Cloud Infrastructure (OCI)" } },
+            new SkillCategory { Category = "Cloud Platforms", Items = new List<string>{ "Azure App Services", "Azure Functions", "Azure SQL", "Blob Storage", "API Management", "Azure Active Directory", "Monitor", "Key Vault", "Application Insights", "Log Analytics", "Azure DevOps (CI/CD)" } },
+            new SkillCategory { Category = "Developer Tools", Items = new List<string>{ "Visual Studio", "Visual Studio Code", "Git", "Docker", "Azure DevOps", "Postman", "SOAP UI" } },
+            new SkillCategory { Category = "Testing Frameworks", Items = new List<string>{ "XUnit", "NUnit", "MSTest" } }
+        },
+        Education = new List<Education>
+        {
+            new Education { Degree = "Bachelor of Technology", Institution = "Panimalar Institute of Technology (Anna University)", Year = "2018 - 2022", Location = "Chennai" }
+        },
+        Certifications = new List<string>
+        {
+            "AZ-900: Microsoft Azure Fundamentals",
+            "SC-900: Microsoft Certified: Security, Compliance, and Identity Fundamentals",
+            "AZ-500: Microsoft Azure Security Technologies",
+            "Google IT Support Professional Certificate"
+        }
+    };
+
+    public class ResumeModel
+    {
+        public string Name { get; set; }
+        public string Title { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string LinkedIn { get; set; }
+        public string GitHub { get; set; }
+        public string Summary { get; set; }
+        public List<Experience> Experiences { get; set; } = new();
+        public List<Project> Projects { get; set; } = new();
+        public List<SkillCategory> Skills { get; set; } = new();
+        public List<Education> Education { get; set; } = new();
+        public List<string> Certifications { get; set; } = new();
+    }
+
+    public class Experience
+    {
+        public string Role { get; set; }
+        public string Company { get; set; }
+        public string Duration { get; set; }
+        public string Location { get; set; }
+        public List<string> Responsibilities { get; set; } = new();
+    }
+
+    public class Project
+    {
+        public string Title { get; set; }
+        public string Technology { get; set; }
+    }
+
+    public class SkillCategory
+    {
+        public string Category { get; set; }
+        public List<string> Items { get; set; } = new();
+    }
+
+    public class Education
+    {
+        public string Degree { get; set; }
+        public string Institution { get; set; }
+        public string Year { get; set; }
+        public string Location { get; set; }
+    }
+}
